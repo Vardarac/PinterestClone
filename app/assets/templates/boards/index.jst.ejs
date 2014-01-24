@@ -8,19 +8,25 @@
         <img class="mini-avatar" src="<%= board.get('user').escape('avatar_url') %>" alt="<%= displayName %>"></img>
       </a>
 
-      <span class="author-note">
-        <strong><%= board.escape("name").slice(0, 15) %></strong>
+      <span class="board-author-note">
+        <a href="#/boards/<%=board.escape("id")%>">
+          <strong><%= board.escape("name").slice(0, 15) %></strong>
         <br>
+        </a>
         <a href="#/users/<%= board.get('user').escape('id') %>">
           <%= displayName %>
         </a>
       </span>
 
-      <img class="img-board" src="<%= board.escape("image_url") %>" width="100%"></img>
+      <a href="#/boards/<%=board.escape("id")%>">
+        <img class="img-board" src="<%= board.escape("image_url") %>" width="100%"></img>
+      </a>
 
       <div class="sample-pins">
         <% board.get('pins').each(function (pin) { %>
-          <img class="sample-pin" src="<%= pin.get("image_url") %>" alt="<%= pin.get("name") %>">
+          <a href="#/pins/<%= pin.escape("id") %>">  
+            <img class="sample-pin" src="<%= pin.get("image_url") %>" alt="<%= pin.get("name") %>">
+          </a>
         <% }) %>
       </div>
 

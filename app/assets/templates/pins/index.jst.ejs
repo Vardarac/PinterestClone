@@ -1,21 +1,41 @@
 <% pins.each(function (pin) { %>
+<% console.log(pin) %>
+  <% var displayName = pin.get('user').escape('name').slice(0, 15) || pin.get('user').escape('email').slice(0, 15) %>
+
   <div class="pin-panel-container">
     <div class="pin-panel">
-<% console.log(pins) %>
-      <img class="mini-avatar" src="<%= pin.get('user').escape('avatar_url') %>"></img>
 
-      <span class="author-note">
-        <strong><%= pin.escape("name").slice(0, 15) %></strong>
-        <br>
-        <%= pin.get('user').escape('name').slice(0, 15) || pin.get('user').escape('email').slice(0, 15) %>
-      </span>
+      <a href="#/pins/<%=pin.escape("id")%>">
+        <img class="img-pin" src="<%= pin.escape("image_url") %>" width="100%"></img>
+      </a>
 
-      <img class="img-pin" src="<%= pin.escape("image_url") %>" width="100%"></img>
+      <div class="pin-description">
+        <% if (pin.get("description").length > 200) { %>
+          <%= pin.escape("description").slice(0, 197) + "..." %>
+        <% } else {%>
+          <%= pin.escape("description").slice(0, 200) %>
+        <% }%>
+      </div>
+
+      <div class="pin-footer">
+        <a href="#/users/<%= pin.get('user').escape('id') %>">
+          <img class="mini-avatar" src="<%= pin.get('user').escape('avatar_url') %>" alt="<%= displayName %>"></img>
+        </a>
+
+        <div class="pin-author-note">
+          <a href="#/pins/<%=pin.escape("id")%>">
+            <strong><%= pin.escape("name").slice(0, 15) %></strong>
+          <br>
+          </a>
+          <a href="#/users/<%= pin.get('user').escape('id') %>">
+            <%= displayName %>
+          </a>
+        </div>
+      </div>
 
     </div>
   </div>
 <% }); %>
-
 
 <script type="text/javascript">
   var wall = new freewall(".panel-box");

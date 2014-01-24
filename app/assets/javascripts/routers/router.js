@@ -40,10 +40,13 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
     this._swapView(homeView, this.$root);
   },
 
-  authModal: function (errorHash) {
+  authModal: function (email, errorHash) {
+    console.log(errorHash.responseJSON["errors"])
     var that = this;
     var authModalView = new PinterestClone.Views.AuthModal();
-    authModalView.errorHash = errorHash;
+    authModalView.message = errorHash.responseJSON["errors"];
+    authModalView.attemptedEmail = email;
+
     this._swapModalView(authModalView, this.$rootModal);
     this.$rootModal.modal('show');
   },
@@ -79,6 +82,23 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
         });
 
         that._swapView(boardsIndexView, that.$root);
+      }, 
+      error: function () {
+        that.previous();
+      }
+    })
+  },
+  
+  pinsIndex: function () {
+    var that = this;
+    var pins = new PinterestClone.Collections.Pins();
+    pins.fetch({
+      success: function () {
+        var pinsIndexView = new PinterestClone.Views.PinsIndex({
+          collection: pins
+        });
+
+        that._swapView(pinsIndexView, that.$root);
       }, 
       error: function () {
         that.previous();

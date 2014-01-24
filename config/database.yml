@@ -3,7 +3,7 @@ development:
   database: pinterestclone_development
   pool: 5
   timeout: 5000
-  host: 5432
+  post: 5432
   user: postgres
   password: itstheremixtoignition
 

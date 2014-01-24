@@ -20,13 +20,13 @@ class SessionsController < ApplicationController
         message.concat("\n\n(We're also working on a reset-password system - contact us if")
         message.concat(" you need help.)")
 
-        render :json => {:errors => message}, :status => :unauthorized
+        render :json => {:errors => message, :type => "email_found"}, :status => :unauthorized
       elsif(is_valid_email?(params[:user][:email]))
         message = "Hmm. We can't find that e-mail in our database."
         message.concat(" Are you new here? You can enter your password again")
         message.concat(" below to confirm, or click the e-mail you")
         message.concat(" entered to change it.")
-        render :json => {:errors => message}, :status => :unauthorized
+        render :json => {:errors => message, :type => "email_not_found"}, :status => :unauthorized
       else
         render :json => {:errors => @user.errors.full_messages}, :status => :unauthorized
       end

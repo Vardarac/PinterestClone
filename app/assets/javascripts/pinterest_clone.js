@@ -4,6 +4,7 @@ window.PinterestClone = {
   Views: {},
   Routers: {},
   initialize: function() {
+    this.mailValidator = new RegExp("^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$");
     var $content = $("#content")
     var $modalContent = $("#main-modal-content")
     this.router = new PinterestClone.Routers.Router($content, $modalContent);
@@ -29,6 +30,11 @@ window.PinterestClone = {
         that.router.loggedOut();
       }
     });
+  },
+
+  clearError: function($target) {
+    console.log("I'm")
+    $target.removeClass("has-error");
   }
 };
 
