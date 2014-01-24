@@ -6,6 +6,8 @@ PinterestClone::Application.routes.draw do
     resources :pins, :except => [:edit, :new]
   end
 
+  resources :pins, :except => [:edit, :new]
+
   get "session/show", :to => "sessions#show"
   resource :session, :only => [:create, :destroy]
 end

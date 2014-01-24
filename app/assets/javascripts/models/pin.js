@@ -1,5 +1,5 @@
 PinterestClone.Models.Pin = Backbone.Model.extend({
-  urlRoot: "/boards/:board_id/pins/",
+  urlRoot: "/pins/",
 
   initialize: function (id) {
     this.id = id;

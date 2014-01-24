@@ -43,7 +43,6 @@ module ApplicationHelper
   end
 
   def ban_filter
-    # Checks ban status of current_user
-    # render :json => {:errors => "http://www.banned.ytmnd.com/"}, :status => 666
+    render :json => {:errors => "http://www.banned.ytmnd.com/"}, :status => 666 if current_user && current_user.is_banned?
   end
 end

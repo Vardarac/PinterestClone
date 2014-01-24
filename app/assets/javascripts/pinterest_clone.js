@@ -15,6 +15,10 @@ window.PinterestClone = {
     $(".active").removeClass();
   },
   
+  offerSignUp: function () {
+
+  },
+
   handleAuth: function() {
 		var that = this;
     $.ajax({

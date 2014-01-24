@@ -9,6 +9,7 @@
 #  link        :string(255)
 #  image_url   :string(255)      not null
 #  board_id    :integer          not null
+#  user_id     :integer          not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #

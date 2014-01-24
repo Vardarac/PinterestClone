@@ -17,8 +17,8 @@
 //= require backbone
 //= require pinterest_clone
 //= require bootstrap
-//= require isotope.pkgd
 //= require imagesloaded
+//= require freewall
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

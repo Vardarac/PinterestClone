@@ -31,6 +31,10 @@ class BoardsController < ApplicationController
   end
 
   def index
-    render :json => Board.includes(:user).to_json(:include => { :user => {only: [:email, :name, :description]}})
+    @boards = Board.all
+    @users = User.all
+    @pins = Pin.all
+
+    render :index
   end
 end

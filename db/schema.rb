@@ -36,10 +36,12 @@ ActiveRecord::Schema.define(version: 20140115183944) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "password_hash", null: false
+    t.integer  "site_permissions", default: 0,                                                                         null: false
+    t.string   "password_hash",                                                                                        null: false
     t.string   "name"
-    t.string   "email",         null: false
-    t.string   "session_token", null: false
+    t.string   "email",                                                                                                null: false
+    t.string   "session_token",                                                                                        null: false
+    t.string   "avatar_url",       default: "http://img.photobucket.com/albums/v61/omniicyshelf/vardaracextended.png", null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -2,9 +2,9 @@
 Welcome, <%= PinterestClone.currentUser.name || PinterestClone.currentUser.email %>!
 <b class="caret"></b></a>
 <ul class="dropdown-menu">
-  <li><a href="#">Action</a></li>
-  <li><a href="#">Another action</a></li>
-  <li><a href="#">Something else here</a></li>
+  <li><a href="#/users/show/<%= PinterestClone.currentUser.id %>">Your Profile</a></li>
+  <li><a href="#">Your Comments</a></li>
+  <li><a href="#">Your Boards and Pins</a></li>
   <li class="divider"></li>
   <li><a href="Log Out" class="sign-out-link">Sign Out</a></li>
 </ul>

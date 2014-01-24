@@ -1,8 +1,59 @@
-<script src="vendor/assets/javascripts/jquery.isotope.perfectmasonry.js"></script>
 <% boards.each(function (board) { %>
-  <div class="panel">
-    <img src="<%= board.escape("image_url") %>" class="img-responsive"></img>
-    <p class="text-center"><%= board.escape("name") %></p>
-    <p class="author-note"><%= board.get('user').escape('name') || board.get('user').escape('email') %></p>
+  <% var displayName = board.get('user').escape('name').slice(0, 15) || board.get('user').escape('email').slice(0, 15) %>
+
+  <div class="board-panel-container">
+    <div class="board-panel">
+
+      <a href="#/users/<%= board.get('user').escape('id') %>">
+        <img class="mini-avatar" src="<%= board.get('user').escape('avatar_url') %>" alt="<%= displayName %>"></img>
+      </a>
+
+      <span class="author-note">
+        <strong><%= board.escape("name").slice(0, 15) %></strong>
+        <br>
+        <a href="#/users/<%= board.get('user').escape('id') %>">
+          <%= displayName %>
+        </a>
+      </span>
+
+      <img class="img-board" src="<%= board.escape("image_url") %>" width="100%"></img>
+
+      <div class="sample-pins">
+        <% board.get('pins').each(function (pin) { %>
+          <img class="sample-pin" src="<%= pin.get("image_url") %>" alt="<%= pin.get("name") %>">
+        <% }) %>
+      </div>
+
+      <button class="btn btn-success btn-board">
+        >> Click here to follow <<
+      </button>
+
+    </div>
   </div>
 <% }); %>
+
+<script type="text/javascript">
+  var wall = new freewall(".panel-box");
+  wall.reset({
+    selector: '.board-panel-container',
+    animate: true,
+    cellW: 236,
+    cellH: 'auto',
+    onResize: function() {
+      wall.fitWidth();
+    }
+  });
+
+  var images = wall.container.find('.board-panel-container');
+  var length = images.length;
+  images.css({visibility: 'hidden'});
+  images.find('img').load(function() {
+    -- length;
+    if (!length) {
+      setTimeout(function() {
+        images.css({visibility: 'visible'});
+        wall.fitWidth();
+      }, 505);
+    }
+  });
+</script>

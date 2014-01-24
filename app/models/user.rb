@@ -2,25 +2,26 @@
 #
 # Table name: users
 #
-#  id            :integer          not null, primary key
-#  password_hash :string(255)      not null
-#  name          :string(255)
-#  email         :string(255)      not null
-#  session_token :string(255)      not null
-#  description   :text
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id               :integer          not null, primary key
+#  site_permissions :integer          default(0), not null
+#  password_hash    :string(255)      not null
+#  name             :string(255)
+#  email            :string(255)      not null
+#  session_token    :string(255)      not null
+#  description      :text
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  # TODO: Add site_permissions. 0 is new user, less than 0 is banned, 500 is mod, 1000 is admin.
+  # site_permissions: 0 is new user, less than 0 is banned, 500 is mod, 1000 is admin, 1500 is root admin.
 
   include BCrypt
 
-  attr_accessible :email, :name, :description, :password # Password_hash assigned automatically from password.
-  attr_reader :password, :site_permissions
+  attr_accessible :email, :name, :description, :password, :site_permissions, :avatar_url # Password_hash assigned automatically from password.
+  attr_reader :password
 
   before_validation :create_session_token # Ensures not nil
 
@@ -55,7 +56,7 @@ class User < ActiveRecord::Base
   after_validation :clear_entered_password
 
   has_many :boards, :dependent => :destroy
-  has_many :pins, :dependent => :destroy
+  has_many :pins, {:through => :boards, :dependent => :destroy}
 
   def password=(pass)
     @password = pass
@@ -87,8 +88,8 @@ class User < ActiveRecord::Base
     #self.site_permissions >= 1000
   end
 
-  def ban_status
-    #self.site_permissions
+  def is_banned?
+    self.site_permissions < 0
   end
 
   def self.find_by_credentials(creds)

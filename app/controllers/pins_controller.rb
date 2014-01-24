@@ -1,6 +1,14 @@
 class PinsController < ApplicationController
   before_filter :ban_filter
 
+  def index
+    @boards = Board.all
+    @users = User.all
+    @pins = Pin.all
+
+    render :index
+  end
+
   def create
     @pin = Pin.new(params[:pin])
     if @pin.save

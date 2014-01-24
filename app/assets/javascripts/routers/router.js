@@ -2,7 +2,8 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "home",
     "users/index": "usersIndex",
-    "boards/index": "boardsIndex"
+    "boards/index": "boardsIndex",
+    "pins/index": "pinsIndex"
   },
 
   initialize: function ($rootEl) {
