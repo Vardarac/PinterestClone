@@ -4,12 +4,32 @@ class SessionsController < ApplicationController
   before_filter :require_authentication, :only => :destroy
 
   def create
+    eval_user_email = params[:user][:email]
     @user = User.find_by_credentials(params[:user])
     if(@user)
       log_in(@user)
       render :json => current_user.to_json(:only => [:id, :email, :name]).html_safe
     else
-      render :json => {:errors => "Invalid username or password :/"}, :status => :unauthorized
+      @user = User.find_by_email(eval_user_email)
+      if @user
+        message = "Hey there,"
+        message.concat(" it looks like you're trying to sign as #{eval_user_email}.")
+        message.concat(" We couldn't confirm the password you provided. You can either")
+        message.concat(" enter a different password or change the e-mail to")
+        message.concat(" sign in or sign up (if we don't already have the e-mail)!")
+        message.concat("\n\n(We're also working on a reset-password system - contact us if")
+        message.concat(" you need help.)")
+
+        render :json => {:errors => message}, :status => :unauthorized
+      elsif(is_valid_email?(params[:user][:email]))
+        message = "Hmm. We can't find that e-mail in our database."
+        message.concat(" Are you new here? You can enter your password again")
+        message.concat(" below to confirm, or click the e-mail you")
+        message.concat(" entered to change it.")
+        render :json => {:errors => message}, :status => :unauthorized
+      else
+        render :json => {:errors => @user.errors.full_messages}, :status => :unauthorized
+      end
     end
   end
 

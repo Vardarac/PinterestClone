@@ -5,7 +5,8 @@ window.PinterestClone = {
   Routers: {},
   initialize: function() {
     var $content = $("#content")
-    this.router = new PinterestClone.Routers.Router($content);
+    var $modalContent = $("#main-modal-content")
+    this.router = new PinterestClone.Routers.Router($content, $modalContent);
 		var that = this;
     this.handleAuth();
     Backbone.history.start();
@@ -15,10 +16,6 @@ window.PinterestClone = {
     $(".active").removeClass();
   },
   
-  offerSignUp: function () {
-
-  },
-
   handleAuth: function() {
 		var that = this;
     $.ajax({
@@ -29,7 +26,6 @@ window.PinterestClone = {
         that.router.loggedIn();
       },
       error: function (data) {
-        console.log("Coming through!")
         that.router.loggedOut();
       }
     });

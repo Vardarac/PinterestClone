@@ -6,8 +6,9 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
     "pins/index": "pinsIndex"
   },
 
-  initialize: function ($rootEl) {
+  initialize: function ($rootEl, $rootModalEl) {
     this.$root = $rootEl;
+    this.$rootModal = $rootModalEl;
   },
 
   loggedIn: function () {
@@ -36,7 +37,15 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
   home: function () {
     var that = this;
     var homeView = new PinterestClone.Views.HomeView();
-    that._swapView(homeView, that.$root);
+    this._swapView(homeView, this.$root);
+  },
+
+  authModal: function (errorHash) {
+    var that = this;
+    var authModalView = new PinterestClone.Views.AuthModal();
+    authModalView.errorHash = errorHash;
+    this._swapModalView(authModalView, this.$rootModal);
+    this.$rootModal.modal('show');
   },
 
   usersIndex: function () {
@@ -72,7 +81,6 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
         that._swapView(boardsIndexView, that.$root);
       }, 
       error: function () {
-        console.log("Initial fetches failed.").
         that.previous();
       }
     })
@@ -81,6 +89,12 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
   _swapView: function (view, $selectedElement) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
+    $selectedElement.html(view.render().$el);
+  },
+
+  _swapModalView: function (view, $selectedElement) {
+    this._currentModalView && this._currentModalView.remove();
+    this._currentModalView = view;
     $selectedElement.html(view.render().$el);
   }
 });

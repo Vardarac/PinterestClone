@@ -19,7 +19,6 @@ PinterestClone.Views.LoggedInDashboardView = Backbone.View.extend ({
         PinterestClone.handleAuth();
       },
       error: function (error) {
-        console.log(error)
       }
     })
   }

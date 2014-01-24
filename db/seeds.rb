@@ -60,6 +60,14 @@ banned_user.email = "lol69@yousuck.com"
 banned_user.site_permissions = -1
 banned_user.save!
 
+guest = User.new()
+guest.name = "Guest"
+guest.password = "guestpassword"
+guest.description = "This is the guest account! Anyone can log in!"
+guest.email = "Guest@PinterestClo.ne"
+guest.site_permissions = 0
+guest.save!
+
 includedNames = []
 includedSizes = []
 boards = []

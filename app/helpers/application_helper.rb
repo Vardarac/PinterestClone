@@ -45,4 +45,8 @@ module ApplicationHelper
   def ban_filter
     render :json => {:errors => "http://www.banned.ytmnd.com/"}, :status => 666 if current_user && current_user.is_banned?
   end
+
+  def is_valid_email?(email)
+    !(email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i).nil?
+  end
 end
