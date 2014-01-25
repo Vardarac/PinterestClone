@@ -1,5 +1,4 @@
 <% pins.each(function (pin) { %>
-<% console.log(pin) %>
   <% var displayName = pin.get('user').escape('name').slice(0, 15) || pin.get('user').escape('email').slice(0, 15) %>
 
   <div class="pin-panel-container">
@@ -19,18 +18,21 @@
 
       <div class="pin-footer">
         <a href="#/users/<%= pin.get('user').escape('id') %>">
-          <img class="mini-avatar" src="<%= pin.get('user').escape('avatar_url') %>" alt="<%= displayName %>"></img>
+          <img class="pin-mini-avatar" src="<%= pin.get('user').escape('avatar_url') %>" alt="<%= displayName %>"></img>
         </a>
 
-        <div class="pin-author-note">
-          <a href="#/pins/<%=pin.escape("id")%>">
-            <strong><%= pin.escape("name").slice(0, 15) %></strong>
-          <br>
-          </a>
-          <a href="#/users/<%= pin.get('user').escape('id') %>">
-            <%= displayName %>
-          </a>
-        </div>
+        <span class="pin-author-note">
+          <p class="pin-author-name">
+            <a href="#/users/<%= pin.get("user").escape("id") %>">
+              <strong><%= displayName %></strong>
+            </a>
+          </p>
+          <p class="pin-board-name">
+            <a href="#/boards/<%= pin.get("board").escape("id") %>">
+              <strong><%= pin.get("board").escape("name").slice(0, 15) %></strong>
+            </a>
+          </p>
+        </span>
       </div>
 
     </div>

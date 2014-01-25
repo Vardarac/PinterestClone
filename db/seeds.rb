@@ -132,7 +132,7 @@ boards.each do |board|
       lorem.image_url.concat(randomSize.to_s)
       puts lorem.image_url
       lorem.board_id = board.id
-      lorem.user_id = 1
+      lorem.user_id = board.user_id
       lorem.save!
     end
   else
@@ -154,7 +154,7 @@ boards.each do |board|
       lorem.image_url.concat(randomSize.to_s)
       puts lorem.image_url
       lorem.board_id = board.id
-      lorem.user_id = 1
+      lorem.user_id = board.user_id
       lorem.save!
     end
   end

@@ -7,7 +7,7 @@ PinterestClone.Models.Pin = Backbone.Model.extend({
 
   parse: function (data) {
     data.user = new PinterestClone.Models.User(data.user);
-    data.board = new PinterestClone.Collections.Pins(data.board);
+    data.board = new PinterestClone.Models.Board(data.board);
     return data;
   }
 });

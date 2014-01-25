@@ -5,17 +5,20 @@
     <div class="board-panel">
 
       <a href="#/users/<%= board.get('user').escape('id') %>">
-        <img class="mini-avatar" src="<%= board.get('user').escape('avatar_url') %>" alt="<%= displayName %>"></img>
+        <img class="board-mini-avatar" src="<%= board.get('user').escape('avatar_url') %>" alt="<%= displayName %>"></img>
       </a>
 
       <span class="board-author-note">
-        <a href="#/boards/<%=board.escape("id")%>">
-          <strong><%= board.escape("name").slice(0, 15) %></strong>
-        <br>
-        </a>
-        <a href="#/users/<%= board.get('user').escape('id') %>">
-          <%= displayName %>
-        </a>
+        <p>
+          <a href="#/boards/<%=board.escape("id")%>">
+            <strong><%= board.escape("name").slice(0, 15) %></strong>
+          </a>
+        </p>
+        <p>
+          <a href="#/users/<%= board.get('user').escape('id') %>">
+            <%= displayName %>
+          </a>
+        </p>
       </span>
 
       <a href="#/boards/<%=board.escape("id")%>">

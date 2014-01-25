@@ -3,6 +3,7 @@ PinterestClone.Views.PinsIndex = Backbone.View.extend({
   className: 'panel-box col-xs-12',
 
   render: function () {
+    console.log(this.collection.get("board"))
     PinterestClone.resetActives();
     $('#pins-link').addClass("active");
 
