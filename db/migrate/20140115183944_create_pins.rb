@@ -11,5 +11,12 @@ class CreatePins < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :pins, :name
+    add_index :pins, :hidden
+    add_index :pins, :privacy_attribute
+    add_index :pins, :image_url
+    add_index :pins, :board_id
+    add_index :pins, :user_id
   end
 end

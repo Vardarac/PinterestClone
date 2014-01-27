@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
         message.concat(" entered to change it.")
         render :json => {:errors => message, :type => "email_not_found"}, :status => :unauthorized
       else
-        render :json => {:errors => @user.errors.full_messages}, :status => :unauthorized
+        render :json => {:errors => "Invalid e-mail address!"}, :status => :unauthorized
       end
     end
   end

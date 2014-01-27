@@ -9,5 +9,10 @@ class CreateBoards < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :boards, :privacy_attribute
+    add_index :boards, :name
+    add_index :boards, :image_url
+    add_index :boards, :user_id
   end
 end

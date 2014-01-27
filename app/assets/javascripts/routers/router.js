@@ -13,11 +13,20 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
 
   loggedIn: function () {
   // Populates logged-in-only buttons and removes login bar
-      this.clearLogViews();
-      this.loggedInButtonsView = new PinterestClone.Views.LoggedInButtonsView();
-      this.loggedInDashboardView = new PinterestClone.Views.LoggedInDashboardView();
-      $("#auth-only-link-list").append(this.loggedInButtonsView.render());
-      $("#backbone-auth").append(this.loggedInDashboardView.render());
+    this.clearLogViews();
+    this.loggedInButtonsView = new PinterestClone.Views.LoggedInButtonsView();
+    this.loggedInDashboardView = new PinterestClone.Views.LoggedInDashboardView();
+
+    $("#auth-only-link-list").append(this.loggedInButtonsView.render());
+    $("#backbone-auth").append(this.loggedInDashboardView.render());
+
+    if(PinterestClone.freshLogin) {
+      var loggedInGreetingModalView = new PinterestClone.Views.LoggedInGreetingModalView();
+      this._swapModalView(loggedInGreetingModalView, this.$rootModal);
+      this.$rootModal.modal('show');
+      PinterestClone.freshLogin = false;
+      PinterestClone.freshUser = false;
+    }
   },
 
   loggedOut: function () {
@@ -40,12 +49,12 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
     this._swapView(homeView, this.$root);
   },
 
-  authModal: function (email, errorHash) {
-    console.log(errorHash.responseJSON["errors"])
+  authModal: function (email, password, errorHash) {
     var that = this;
     var authModalView = new PinterestClone.Views.AuthModal();
     authModalView.message = errorHash.responseJSON["errors"];
     authModalView.attemptedEmail = email;
+    authModalView.attemptedPassword = password;
 
     this._swapModalView(authModalView, this.$rootModal);
     this.$rootModal.modal('show');

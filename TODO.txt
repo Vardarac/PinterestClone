@@ -1,0 +1,25 @@
+TODO:
+
+Push to Heroku
+
+Sign Up and modals
+New Boards
+New Pins
+
+Show board
+Show pin
+
+Edit boards
+Edit pins
+Delete boards
+Delete pins
+
+Edit user settings
+Follow boards
+Re-pins
+
+Infinite scroll
+User pagination
+
+Friends
+Admin

@@ -51,16 +51,18 @@
     }
   });
 
-  var images = wall.container.find('.pin-panel-container');
-  var length = images.length;
-  images.css({visibility: 'hidden'});
-  images.find('img').load(function() {
-    -- length;
-    if (!length) {
-      setTimeout(function() {
-        images.css({visibility: 'visible'});
-        wall.fitWidth();
-      }, 505);
-    }
+  imagesLoaded($("#content"), function () {
+    var images = wall.container.find('.pin-panel-container');
+    var length = images.length;
+    images.css({visibility: 'hidden'});
+    images.find('img').load(function() {
+      -- length;
+      if (!length) {
+        setTimeout(function() {
+          images.css({visibility: 'visible'});
+          wall.fitWidth();
+        }, 505);
+      }
+    });
   });
 </script>

@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :site_permissions, {:default => 0, :null => false}
       t.string :password_hash, :null => false
       t.string :name
+      t.string :status
       t.string :email, :null => false
       t.string :session_token, :null => false
       t.string :avatar_url, {
