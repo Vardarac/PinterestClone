@@ -1,4 +1,4 @@
-PinterestClone.Views.LoggedInDashboardView = Backbone.View.extend ({
+Tack.Views.LoggedInDashboardView = Backbone.View.extend ({
   tagName: "li",
   template: JST["auth/logged_in_dashboard"],
   events: {
@@ -16,7 +16,7 @@ PinterestClone.Views.LoggedInDashboardView = Backbone.View.extend ({
       url: "/session",
       type: "DELETE",
       success: function () {
-        PinterestClone.handleAuth();
+        Tack.handleAuth();
       },
       error: function (error) {
       }

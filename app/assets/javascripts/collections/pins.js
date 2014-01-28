@@ -1,4 +1,4 @@
-PinterestClone.Collections.Pins = Backbone.Collection.extend({
+Tack.Collections.Pins = Backbone.Collection.extend({
   url: "/pins/",
-  model: PinterestClone.Models.Pin
+  model: Tack.Models.Pin
 });

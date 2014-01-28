@@ -1,13 +1,25 @@
 <div class="modal-content">
-  <div class="modal-header">
-    <h4 class="modal-title text-center" id="myModalLabel">Success!</h4>
+  <div class="<%= Tack.freshUser ? "modal-header" : "modal-body" %>">
+    <h4 class="modal-title text-center" id="myModalLabel"><%= Tack.freshUser ? "Welcome aboard!" : "Login successful!" %></h4>
+    <% if (!Tack.freshUser) { %>
+      <br>
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <button class="btn btn-info greet-modal-okay">Cool</button>
+        </div>
+      </p>
+    <% } %>
   </div>
-  <div class="modal-body">
-    <div class="row">
-      <p class="col-xs-12 col-md-10 col-md-offset-1"><%= PinterestClone.freshUser ? "Your account was created successfully! Please be sure to check your e-mail to confirm your new account." : "Login successful!" %></p>
+  <% if (Tack.freshUser) { %> 
+    <div class="modal-body">
+      <div class="row">
+        <p class="col-xs-12 col-md-10 col-md-offset-1 text-center">Your account was created successfully! Please be sure to check your e-mail to confirm your new account.</p>
+      </div>
+    </div>
+  <div class="modal-footer row">
+    <div class="col-xs-12 text-center">
+      <button class="btn btn-info greet-modal-okay">Cool</button>
     </div>
   </div>
-  <div class="modal-footer text-center">
-    <button class="btn btn-info greet-modal-okay">Cool</button>
-  </div>
+  <% } %>
 </div>

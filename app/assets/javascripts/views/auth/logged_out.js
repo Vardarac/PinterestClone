@@ -1,4 +1,4 @@
-PinterestClone.Views.LoggedOutView = Backbone.View.extend ({
+Tack.Views.LoggedOutView = Backbone.View.extend ({
   tagName: "form",
   events: {
     "click .submit-credentials": "sendCreds",
@@ -32,11 +32,11 @@ PinterestClone.Views.LoggedOutView = Backbone.View.extend ({
 
   clearError: function (event) {
     if($(event.target).parent().hasClass("has-error")){
-      PinterestClone.clearError($(event.target).parent());
+      Tack.clearError($(event.target).parent());
     }
   },
 
   sendCreds: function () {
-    PinterestClone.sendCreds(arguments);
+    Tack.sendCreds(arguments);
   }
 });

@@ -1,3 +1,15 @@
+<div class="board-panel-container">
+  <div class="board-panel">
+    <a href="#/boards/new">
+      <img class="img-board" src="https://s3-us-west-1.amazonaws.com/vardarac-tack-main/plus.svg" width="100%"></img>
+    </a>
+
+    <button class="btn btn-success btn-board">
+      Add New Board
+    </button>
+  </div>
+</div>
+
 <% boards.each(function (board) { %>
   <% var displayName = board.get('user').escape('name').slice(0, 15) || board.get('user').escape('email').slice(0, 15) %>
 

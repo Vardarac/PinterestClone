@@ -1,4 +1,4 @@
-PinterestClone.Views.ErrorModalView = Backbone.View.extend({
+Tack.Views.ErrorModalView = Backbone.View.extend({
   template: JST["modals/error"],
 
   initialize: function (messages) {

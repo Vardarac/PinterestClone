@@ -2,7 +2,6 @@ TODO:
 
 Push to Heroku
 
-Sign Up and modals
 New Boards
 New Pins
 
@@ -23,3 +22,15 @@ User pagination
 
 Friends
 Admin
+Private messaging
+Private boards
+
+Drag pin over board for instant re-pin
+Draggable board/pin sorting
+
+Interest displaying pins
+Customizable pin and board backgrounds and color schemes
+
+User themes
+
+Site logo and branding

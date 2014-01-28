@@ -1,4 +1,4 @@
-PinterestClone.Models.User = Backbone.Model.extend({
+Tack.Models.User = Backbone.Model.extend({
   urlRoot: "/users/",
 
   initialize: function (id) {

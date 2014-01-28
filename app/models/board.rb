@@ -4,7 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  description       :text
-#  privacy_attribute :integer          default(0), not null
+#  privacy_attribute :integer          default(0), not null # 0 public, 1 friends, 2 custom users, 3 custom groups
 #  name              :string(255)      not null
 #  image_url         :string(255)      not null
 #  user_id           :integer          not null

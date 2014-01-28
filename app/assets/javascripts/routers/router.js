@@ -1,9 +1,11 @@
-PinterestClone.Routers.Router = Backbone.Router.extend({
+Tack.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "home",
     "users/index": "usersIndex",
     "boards/index": "boardsIndex",
-    "pins/index": "pinsIndex"
+    "pins/index": "pinsIndex",
+    "pins/new": "createPinModal",
+    "boards/new": "createBoardModal"
   },
 
   initialize: function ($rootEl, $rootModalEl) {
@@ -14,26 +16,26 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
   loggedIn: function () {
   // Populates logged-in-only buttons and removes login bar
     this.clearLogViews();
-    this.loggedInButtonsView = new PinterestClone.Views.LoggedInButtonsView();
-    this.loggedInDashboardView = new PinterestClone.Views.LoggedInDashboardView();
+    this.loggedInButtonsView = new Tack.Views.LoggedInButtonsView();
+    this.loggedInDashboardView = new Tack.Views.LoggedInDashboardView();
 
     $("#auth-only-link-list").append(this.loggedInButtonsView.render());
     $("#backbone-auth").append(this.loggedInDashboardView.render());
 
-    if(PinterestClone.freshLogin) {
-      var loggedInGreetingModalView = new PinterestClone.Views.LoggedInGreetingModalView();
+    if(Tack.freshLogin) {
+      var loggedInGreetingModalView = new Tack.Views.LoggedInGreetingModalView();
       this._swapModalView(loggedInGreetingModalView, this.$rootModal);
       this.$rootModal.modal('show');
-      PinterestClone.freshLogin = false;
-      PinterestClone.freshUser = false;
+      Tack.freshLogin = false;
+      Tack.freshUser = false;
     }
   },
 
   loggedOut: function () {
   // Depopulates logged-in-only buttons and restores login bar
-      PinterestClone.currentUser = undefined;
+      Tack.currentUser = undefined;
       this.clearLogViews();
-      this.loggedOutView = new PinterestClone.Views.LoggedOutView();
+      this.loggedOutView = new Tack.Views.LoggedOutView();
       $("#backbone-auth").html(this.loggedOutView.render().$el);
   },
 
@@ -44,14 +46,12 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
   },
 
   home: function () {
-    var that = this;
-    var homeView = new PinterestClone.Views.HomeView();
+    var homeView = new Tack.Views.HomeView();
     this._swapView(homeView, this.$root);
   },
 
   authModal: function (email, password, errorHash) {
-    var that = this;
-    var authModalView = new PinterestClone.Views.AuthModal();
+    var authModalView = new Tack.Views.AuthModal();
     authModalView.message = errorHash.responseJSON["errors"];
     authModalView.attemptedEmail = email;
     authModalView.attemptedPassword = password;
@@ -60,13 +60,25 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
     this.$rootModal.modal('show');
   },
 
+  createPinModal: function () {
+    var newPinModal = new Tack.Views.NewPinModal();
+    this._swapModalView(newPinModal, this.$rootModal);
+    this.$rootModal.modal('show');
+  },
+
+  createBoardModal: function () {
+    var newBoardModal = new Tack.Views.NewBoardModal();
+    this._swapModalView(newBoardModal, this.$rootModal);
+    this.$rootModal.modal('show');
+  },
+
   usersIndex: function () {
     var that = this;
-    var users = new PinterestClone.Collections.Users();
+    var users = new Tack.Collections.Users();
 
     users.fetch({
       success: function () {
-        var usersIndexView = new PinterestClone.Views.UsersIndex({
+        var usersIndexView = new Tack.Views.UsersIndex({
           collection: users
         });
 
@@ -83,10 +95,10 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
 
   boardsIndex: function () {
     var that = this;
-    var boards = new PinterestClone.Collections.Boards();
+    var boards = new Tack.Collections.Boards();
     boards.fetch({
       success: function () {
-        var boardsIndexView = new PinterestClone.Views.BoardsIndex({
+        var boardsIndexView = new Tack.Views.BoardsIndex({
           collection: boards
         });
 
@@ -100,10 +112,10 @@ PinterestClone.Routers.Router = Backbone.Router.extend({
   
   pinsIndex: function () {
     var that = this;
-    var pins = new PinterestClone.Collections.Pins();
+    var pins = new Tack.Collections.Pins();
     pins.fetch({
       success: function () {
-        var pinsIndexView = new PinterestClone.Views.PinsIndex({
+        var pinsIndexView = new Tack.Views.PinsIndex({
           collection: pins
         });
 

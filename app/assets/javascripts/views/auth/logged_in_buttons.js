@@ -1,4 +1,4 @@
-PinterestClone.Views.LoggedInButtonsView = Backbone.View.extend ({
+Tack.Views.LoggedInButtonsView = Backbone.View.extend ({
   tagName: "ul",
   className: "nav navbar-nav",
   template: JST["auth/logged_in_buttons"],

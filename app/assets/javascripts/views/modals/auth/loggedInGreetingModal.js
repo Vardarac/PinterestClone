@@ -1,4 +1,4 @@
-PinterestClone.Views.LoggedInGreetingModalView = Backbone.View.extend({
+Tack.Views.LoggedInGreetingModalView = Backbone.View.extend({
   events: {
     "click .greet-modal-okay": "dismissGreeting"
   },

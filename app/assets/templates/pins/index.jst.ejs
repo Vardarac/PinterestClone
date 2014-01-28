@@ -1,3 +1,19 @@
+  <div class="pin-panel-container">
+    <div class="pin-panel">
+
+      <a href="#/pins/new">
+        <img class="img-pin" src="https://s3-us-west-1.amazonaws.com/vardarac-tack-main/pin.svg" width="100%"></img>
+      </a>
+
+      <div class="pin-footer">
+        <div class="add-pin-holder row">
+          <button class="btn btn-success add-pin col-xs-12">Create New Pin</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 <% pins.each(function (pin) { %>
   <% var displayName = pin.get('user').escape('name').slice(0, 15) || pin.get('user').escape('email').slice(0, 15) %>
 
@@ -51,18 +67,16 @@
     }
   });
 
-  imagesLoaded($("#content"), function () {
-    var images = wall.container.find('.pin-panel-container');
-    var length = images.length;
-    images.css({visibility: 'hidden'});
-    images.find('img').load(function() {
-      -- length;
-      if (!length) {
-        setTimeout(function() {
-          images.css({visibility: 'visible'});
-          wall.fitWidth();
-        }, 505);
-      }
-    });
+  var images = wall.container.find('.pin-panel-container');
+  var length = images.length;
+  images.css({visibility: 'hidden'});
+  images.find('img').load(function() {
+    -- length;
+    if (!length) {
+      setTimeout(function() {
+        images.css({visibility: 'visible'});
+        wall.fitWidth();
+      }, 505);
+    }
   });
 </script>

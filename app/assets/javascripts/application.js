@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require underscore
 //= require backbone
-//= require pinterest_clone
+//= require Tack
 //= require bootstrap
 //= require imagesloaded.pkgd
 //= require freewall

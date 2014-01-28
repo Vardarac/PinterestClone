@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  database: pinterestclone_development
+  database: Tack_development
   pool: 5
   timeout: 5000
   post: 5432
@@ -9,7 +9,7 @@ development:
 
 production:
   adapter: postgresql
-  database: pinterestclone_production
+  database: Tack_production
   encoding: unicode
   pool: 5
   timeout: 5000

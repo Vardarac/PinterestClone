@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-PinterestClone::Application.load_tasks
+Tack::Application.load_tasks

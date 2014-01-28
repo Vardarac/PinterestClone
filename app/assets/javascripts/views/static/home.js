@@ -1,8 +1,8 @@
-PinterestClone.Views.HomeView = Backbone.View.extend({
+Tack.Views.HomeView = Backbone.View.extend({
   template: JST['static/home'],
 
   render: function () {
-    PinterestClone.resetActives();
+    Tack.resetActives();
     this.$el.html(this.template());
     return this;
   }

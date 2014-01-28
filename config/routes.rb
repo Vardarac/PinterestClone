@@ -1,4 +1,4 @@
-PinterestClone::Application.routes.draw do
+Tack::Application.routes.draw do
   root :to => "root#root"
 
   resources :users, :except => [:edit, :new]

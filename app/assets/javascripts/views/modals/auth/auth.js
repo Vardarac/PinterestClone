@@ -1,4 +1,4 @@
-PinterestClone.Views.AuthModal = Backbone.View.extend({
+Tack.Views.AuthModal = Backbone.View.extend({
   events: {
     "click .modal-submit-credentials": "sendCreds"
   },
@@ -21,6 +21,6 @@ PinterestClone.Views.AuthModal = Backbone.View.extend({
 
   sendCreds: function (event) {
     event.preventDefault();
-    PinterestClone.sendCreds();
+    Tack.sendCreds();
   }
 });

@@ -1,4 +1,4 @@
-PinterestClone.Models.Pin = Backbone.Model.extend({
+Tack.Models.Pin = Backbone.Model.extend({
   urlRoot: "/pins/",
 
   initialize: function (id) {
@@ -6,8 +6,8 @@ PinterestClone.Models.Pin = Backbone.Model.extend({
   },
 
   parse: function (data) {
-    data.user = new PinterestClone.Models.User(data.user);
-    data.board = new PinterestClone.Models.Board(data.board);
+    data.user = new Tack.Models.User(data.user);
+    data.board = new Tack.Models.Board(data.board);
     return data;
   }
 });
